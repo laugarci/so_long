@@ -6,14 +6,19 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/19 15:46:13 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:26:16 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "so_long.h"
 #include "so_long_utils.c"
+#include "./get_next_line/get_next_line.c"
+#include "./get_next_line/get_next_line_utils.c"
+//#include "./get_next_line/get_next_line.h"
 
-void	ft_check_letters(char *buf, game *game)
+
+void	ft_check_letters(char *buf, t_game *game)
 {
 	int i;
 
@@ -32,35 +37,21 @@ void	ft_check_letters(char *buf, game *game)
 	}
 }
 
-void	ft_read_map(int fd)
-{
-	char	*buf;
-	int		rdbytes;
-		
-	rdbytes = 1;
-	while (rdbytes > 0)
-	{
-		rdbytes = read(fd, buf, 1);
-		if (rdbytes > 0)
-	}
-}
-
-void	ft_open_map(char *av, t_game *game)
+void	ft_open_map(char **av, t_game *game)
 {
 	int		i;
 	int 	fd;
 	char	*buf;
 
 	i = 0;
-	fd = open(&av[1], O_RDONLY);
+	fd = open(av[1], O_RDONLY);
 	if (fd < 1)
 	{
 		ft_puterror();
 		exit(1);
 	}
-	buf = ft_read_map(fd);
-	ft_check_letters(buf, game);
-	game->map = get_next_line(buf);
+//	ft_check_letters(buf, game);
+	game->line = get_next_line(fd);
 	while (game->map[0][i] != '\0')
 	{
 		game->col++;
@@ -83,7 +74,7 @@ void	ft_check_arg(int ac, char **av)
 	}
 	if (ac == 2)
 	{
-		if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
+		if (!ft_strnstr(av[1], ".ber", ft_strlen_sl(av[1])))
 		{
 			ft_puterror();
 			exit(1);
@@ -96,6 +87,6 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	ft_check_arg(ac, av);
-	ft_open_map(av, &game)
+	ft_open_map(av, &game);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:45:13 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/16 18:31:25 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:52:52 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_free(char **pt)
+char	*ft_free_sl(char **pt)
 {
 	free(*pt);
 	*pt = NULL;
@@ -49,7 +49,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_sl(const char *str)
 {
 	int	c;
 	c = 0;
