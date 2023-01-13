@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:42:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/02 12:02:49 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:27:21 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct game_map
 //CHECKS//
 void	ft_check_arg(int ac, char **av);
 void	ft_open_map(char **av, struct game_map *game);
-//void	ft_read_map(int fd);
+void	ft_check_letters(char *buf, struct game_map *game);
+//char	*ft_read_map(int fd);
 
 
 //UTILS//

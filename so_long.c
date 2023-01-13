@@ -6,13 +6,13 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/02 12:26:16 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:45:56 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "so_long.h"
-#include "so_long_utils.c"
+//#include "so_long_utils.c"
 #include "./get_next_line/get_next_line.c"
 #include "./get_next_line/get_next_line_utils.c"
 //#include "./get_next_line/get_next_line.h"
@@ -41,11 +41,12 @@ void	ft_open_map(char **av, t_game *game)
 {
 	int		i;
 	int 	fd;
-	char	*buf;
+//	char	*buf;
 
+	write(1, "entra\n", 6);
 	i = 0;
 	fd = open(av[1], O_RDONLY);
-	if (fd < 1)
+	if (fd < 0)
 	{
 		ft_puterror();
 		exit(1);
@@ -62,11 +63,6 @@ void	ft_open_map(char **av, t_game *game)
 }
 void	ft_check_arg(int ac, char **av)
 {
-	int	i;
-	int len;
-
-	i = 0;
-	len = 0;
 	if (ac != 2)
 	{
 		ft_puterror();
