@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:11:34 by laugarci          #+#    #+#             */
-/*   Updated: 2022/12/15 10:12:40 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:53:42 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 100
 # endif
 
 # include <stdlib.h>
