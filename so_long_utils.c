@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:45:13 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/02 11:52:52 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:25:52 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ char	*ft_free_sl(char **pt)
 	free(*pt);
 	*pt = NULL;
 	return (NULL);
-}
-
-int		ft_puterror(void)
-{
-	write(1, "Error\n", 6);
-	return (0);
 }
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
