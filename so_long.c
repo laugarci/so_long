@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/19 16:35:22 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:15:48 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int		ft_check_letters(char *buf, t_game *game)
 	{
 		if (buf[i] != '0' && buf[i] != 'P' && buf[i] != 'C' && buf[i] != 'E'
 			&& buf[i] != '\n' && buf[i] != '1')
+		{
 			write(1, "Hay caracteres erroneos en el mapa\n", 35);
+			exit(1);
+		}
 		if (buf[i] == 'P')
 			game->p++;
 		if (buf[i] == 'C')
@@ -66,6 +69,8 @@ void	ft_open_map(char **av, t_game *game)
 			break ;
 		i = ft_check_letters(game->line, game);
 	}
+	if (game->p > 1 || game->ex > 1 || game->c < 1)
+		write(1, "El mapa debe tener una posicion inicial, una salida y al menos un coleccionable\n", 80);
 	game->col = i - 1;
 	if ((game->col * game->row) != (game->chr - game->row))
 		write(1, "El mapa no es valido\n", 21);
