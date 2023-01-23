@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/19 17:15:48 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:21:04 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 #include "./get_next_line/get_next_line_utils.c"
 #include "./get_next_line/get_next_line.h"
 
-int		ft_check_letters(char *buf, t_game *game)
+void	ft_check_map(char *buf, t_game *game)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	ft_check_limits(buf[0]); //envia primera columna
 	while (buf[i])
 	{
@@ -32,12 +34,6 @@ int		ft_check_letters(char *buf, t_game *game)
 			write(1, "Hay caracteres erroneos en el mapa\n", 35);
 			exit(1);
 		}
-		if (buf[i] == 'P')
-			game->p++;
-		if (buf[i] == 'C')
-			game->c++;
-		if (buf[i] == 'E')
-			game->ex++;
 		if (buf[i] == '\n')
 			game->row++;
 		if (game->row < 1) //envia primera fila
@@ -45,15 +41,17 @@ int		ft_check_letters(char *buf, t_game *game)
 		game->chr++;
 		i++;
 	}
-	ft_check_limits(buf[i - 2]); //envia la ultima columna
-	return (i);
+	game->col = i - 1;
+	i = 0;
+	while (buf[i])
+		game->last_line[j++] = buf[i++];
 }
 
 void	ft_open_map(char **av, t_game *game)
 {
 	int	i;
 	int	fd;
-	int row;
+	int	row;
 
 	i = 0;
 	fd = open(av[1], O_RDONLY);
@@ -67,11 +65,12 @@ void	ft_open_map(char **av, t_game *game)
 		game->line = get_next_line(fd);
 		if (game->line == NULL)
 			break ;
-		i = ft_check_letters(game->line, game);
+		ft_check_letters(game->line, game);
+		ft_check_map(game->line, game);
 	}
+	ft_check_last_line(game->last_line); //envia la ultima linea
 	if (game->p > 1 || game->ex > 1 || game->c < 1)
-		write(1, "El mapa debe tener una posicion inicial, una salida y al menos un coleccionable\n", 80);
-	game->col = i - 1;
+		write(1, "Faltan elementos en el mapa\n", 28);
 	if ((game->col * game->row) != (game->chr - game->row))
 		write(1, "El mapa no es valido\n", 21);
 	close(fd);
@@ -85,6 +84,8 @@ void	ft_init_var(t_game *game)
 	game->c = 0;
 	game->ex = 0;
 	game->chr = 0;
+	game->line = 0;
+	game->last_line = malloc(sizeof(char) * (game->col));
 }
 
 void	ft_check_arg(int ac, char **av)
