@@ -6,7 +6,7 @@
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 17:45:23 by laugarci          #+#    #+#              #
-#    Updated: 2023/01/16 12:12:44 by laugarci         ###   ########.fr        #
+#    Updated: 2023/01/26 11:57:00 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ RM		= rm -f
 AR		= ar -rcs
 
 SRC_FILES	= so_long.c \
-			  so_long_utils.c
+			  so_long_utils.c \
+			  check_limits.c \
+			  check_path.c \
 
 SRC_OBJ		= $(SRC_FILES:.c=.o)
 

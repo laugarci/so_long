@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/23 13:21:04 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:15:30 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "so_long.h"
 #include "so_long_utils.c"
 #include "check_limits.c"
+#include "check_path.c"
 #include "./get_next_line/get_next_line.c"
 #include "./get_next_line/get_next_line_utils.c"
 #include "./get_next_line/get_next_line.h"
@@ -47,11 +48,10 @@ void	ft_check_map(char *buf, t_game *game)
 		game->last_line[j++] = buf[i++];
 }
 
-void	ft_open_map(char **av, t_game *game)
+int	ft_open_map(char **av, t_game *game)
 {
 	int	i;
 	int	fd;
-	int	row;
 
 	i = 0;
 	fd = open(av[1], O_RDONLY);
@@ -67,13 +67,14 @@ void	ft_open_map(char **av, t_game *game)
 			break ;
 		ft_check_letters(game->line, game);
 		ft_check_map(game->line, game);
+//		ft_copymap(game->line, game);
 	}
 	ft_check_last_line(game->last_line); //envia la ultima linea
 	if (game->p > 1 || game->ex > 1 || game->c < 1)
 		write(1, "Faltan elementos en el mapa\n", 28);
 	if ((game->col * game->row) != (game->chr - game->row))
 		write(1, "El mapa no es valido\n", 21);
-	close(fd);
+	return (fd);
 }
 
 void	ft_init_var(t_game *game)
@@ -108,9 +109,10 @@ void	ft_check_arg(int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_game	game;
+	int fd;
 
 	ft_check_arg(ac, av);
 	ft_init_var(&game);
-	ft_open_map(av, &game);
+	fd = ft_open_map(av, &game);
 	return (0);
 }
