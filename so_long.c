@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/27 11:55:33 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:56:02 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	*ft_init_var(t_game *game)
 	game->last_line = malloc(sizeof(char) * (game->col));
 	if (!game->last_line)
 		return (NULL);
-	return (game->last_line); //meh
+	return (0);
 }
 
 void	ft_check_arg(int ac, char **av)
@@ -116,5 +116,7 @@ int	main(int ac, char **av)
 	ft_init_var(&game);
 	ft_open_map(av, &game);
 	ft_copy_map(&game, av);
+	ft_check_path(&game);
+
 	return (0);
 }
