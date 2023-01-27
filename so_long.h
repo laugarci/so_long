@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:42:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/26 12:16:35 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:53:37 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ typedef struct game_map
 
 //CHECKS//
 void	ft_check_arg(int ac, char **av);
-int		ft_open_map(char **av, struct game_map *game);
+void	ft_open_map(char **av, struct game_map *game);
 void	ft_check_letters(char *buf, struct game_map *game);
 void	ft_check_limits(char limit);
 void	ft_check_map(char *buf, t_game *game);
 void	ft_check_last_line(char *limit);
-void	ft_copymap(char *line, t_game *game);
+void	ft_copy_map(t_game *game, char **av);
 
 //UTILS//
 char	*ft_strnstr(const char *big, const char *little, size_t len);
