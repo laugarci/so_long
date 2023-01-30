@@ -6,12 +6,12 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/27 14:39:48 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:00:51 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "./get_next_line/get_next_line.h"
+#include "get_next_line/get_next_line.h"
 
 void	ft_copy_map(t_game *game, char **av)
 {
@@ -31,6 +31,7 @@ void	ft_copy_map(t_game *game, char **av)
 		count--;
 		i++;
 	}
+	close(fd);
 }
 
 int		*ft_start(char **map)
@@ -80,9 +81,15 @@ void		ft_find_path(t_game *game, int x, int y)
 void	ft_check_path(t_game *game)
 {
 	int *pos;
+	int	c;
+	int ex;
 
+	c = game->c;
+	ex = game->ex;
 	pos = ft_start(game->map);
 	ft_find_path(game, pos[0], pos[1]);
 	if (game->ex != 0 && game->c != 0)
 		write(1, "El mapa no se puede resolver\n", 29);
+	game->c = c;
+	game->ex = ex;
 }

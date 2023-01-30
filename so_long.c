@@ -6,17 +6,16 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/27 13:56:02 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:00:16 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "so_long.h"
-#include "so_long_utils.c"
-#include "check_limits.c"
-#include "check_path.c"
-#include "./get_next_line/get_next_line.c"
-#include "./get_next_line/get_next_line_utils.c"
+//#include "so_long_utils.c"
+//#include "check_limits.c"
+//#include "check_path.c"
+//#include "ft_window.c"
 #include "./get_next_line/get_next_line.h"
 
 void	ft_check_map(char *buf, t_game *game)
@@ -117,6 +116,8 @@ int	main(int ac, char **av)
 	ft_open_map(av, &game);
 	ft_copy_map(&game, av);
 	ft_check_path(&game);
+	ft_copy_map(&game, av);
+	ft_open_window();
 
 	return (0);
 }

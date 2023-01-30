@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -6,12 +7,15 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:42:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/27 14:25:47 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:14:19 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+#include "./get_next_line/get_next_line.h"
+#include "mlx/mlx.h"
 
 # include <stdio.h>
 # include <unistd.h>
@@ -32,6 +36,7 @@ typedef struct s_collectibles
 typedef struct game_map
 {
 	char	**map;
+	char	**path;
 	char	*line;
 	char	*last_line;
 	int		row;
@@ -58,5 +63,8 @@ void	ft_find_path(t_game *game, int x, int y);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 size_t	ft_strlen_sl(const char *str);
 char	*ft_free_sl(char **pt);
+
+//WINDOW//
+void		ft_open_window(void);
 
 #endif

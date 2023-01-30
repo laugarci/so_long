@@ -6,7 +6,7 @@
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 17:45:23 by laugarci          #+#    #+#              #
-#    Updated: 2023/01/26 11:57:00 by laugarci         ###   ########.fr        #
+#    Updated: 2023/01/30 12:51:08 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ HEADER	= so_long.h
 
 CFLAGS	= -Wall -Wextra -Werror
 
-MLXCC	= -I mlx -L ./mlx -lmlx
+MLXCC	=  -L ./mlx -lmlx
 OPENGL	= -framework OpenGL -framework AppKit
 
-INC		= -I ./mlx -I ./
+INC		= -I ./mlx -I ./get_next_line
 
 CC		= gcc
 
@@ -32,6 +32,9 @@ SRC_FILES	= so_long.c \
 			  so_long_utils.c \
 			  check_limits.c \
 			  check_path.c \
+			  ft_window.c \
+			  ./get_next_line/get_next_line.c \
+			  ./get_next_line/get_next_line_utils.c \
 
 SRC_OBJ		= $(SRC_FILES:.c=.o)
 
@@ -42,11 +45,11 @@ $(MLX): @make -s -C mlx
 all: $(MLX) $(NAME) 
 
 %.o : %.c Makefile
-	@$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -MMD $(INC) -c $< -o $@
 	@echo "Compiling $<..."	
 
 $(NAME) : $(SRC_OBJ)
-	@$(CC) $(SRC_OBJ) $(MLXCC) $(OPENGL) -o $(NAME)
+	@$(CC) $(SRC_OBJ) $(MLXCC) $(INC) $(OPENGL) -o $(NAME)
 	@echo Compiled!
 
 clean:
