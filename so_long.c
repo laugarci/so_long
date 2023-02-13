@@ -6,16 +6,11 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/30 15:00:16 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/13 20:16:22 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "so_long.h"
-//#include "so_long_utils.c"
-//#include "check_limits.c"
-//#include "check_path.c"
-//#include "ft_window.c"
 #include "./get_next_line/get_next_line.h"
 
 void	ft_check_map(char *buf, t_game *game)
@@ -56,7 +51,7 @@ void	ft_open_map(char **av, t_game *game)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
-		write(1, "Error de lectura\n", 17);
+		write(1, "Error de lectura: el archivo no es valido\n", 42);
 		exit(1);
 	}
 	while (fd)
@@ -117,7 +112,9 @@ int	main(int ac, char **av)
 	ft_copy_map(&game, av);
 	ft_check_path(&game);
 	ft_copy_map(&game, av);
-	ft_open_window();
-
+	ft_open_window(&game);
+//	mlx_hook(game.mlx_win, 2, 1L << 0, ft_movements, &game);
+	mlx_hook(game.mlx_win, 17, 1L << 5, ft_close_window, &game);
+	mlx_loop(game.mlx_init);
 	return (0);
 }

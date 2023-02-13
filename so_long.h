@@ -1,13 +1,12 @@
 /* ************************************************************************** */
-
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 10:42:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/30 12:14:19 by laugarci         ###   ########.fr       */
+/*   Created: 2023/01/31 16:09:41 by laugarci          #+#    #+#             */
+/*   Updated: 2023/02/13 20:15:27 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +26,25 @@ typedef struct s_player
 {
 
 } player;
-
-typedef struct s_collectibles
-{
-
-} col;
 */
+
 typedef struct game_map
 {
 	char	**map;
-	char	**path;
 	char	*line;
 	char	*last_line;
+	char	*file;
 	int		row;
 	int		col;
+	int		row_y;
+	int		col_x;
 	int		p;
 	int		c;
 	int		ex;
 	int		chr;
+	int		pxl;
+	void	*mlx_init;
+	void	*mlx_win;
 }	t_game;
 
 //CHECKS//
@@ -65,6 +65,11 @@ size_t	ft_strlen_sl(const char *str);
 char	*ft_free_sl(char **pt);
 
 //WINDOW//
-void		ft_open_window(void);
+void		ft_open_window(t_game *game);
+void		ft_put_limits(t_game *game);
+void		ft_put_collect(t_game *game);
+void		ft_put_player(t_game *game);
+void		ft_put_exit(t_game *game);
+int			ft_close_window(t_game *game);
 
 #endif

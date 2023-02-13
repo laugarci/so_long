@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/30 15:00:51 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:35:01 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	ft_copy_map(t_game *game, char **av)
 {
-	int fd;
-	int count;
-	int i;
-	int k;
+	int	fd;
+	int	count;
+	int	i;
+	int	k;
 
 	i = 0;
 	k = 0;
@@ -34,11 +34,11 @@ void	ft_copy_map(t_game *game, char **av)
 	close(fd);
 }
 
-int		*ft_start(char **map)
+int	*ft_start(char **map)
 {
-	int x;
-	int y;
-	int *pos;
+	int	x;
+	int	y;
+	int	*pos;
 
 	pos = malloc(sizeof(int) * 2);
 	if (!pos)
@@ -62,7 +62,7 @@ int		*ft_start(char **map)
 	return (0);
 }
 
-void		ft_find_path(t_game *game, int x, int y)
+void	ft_find_path(t_game *game, int x, int y)
 {
 	if (game->map[x][y] != '1')
 	{
@@ -80,9 +80,9 @@ void		ft_find_path(t_game *game, int x, int y)
 
 void	ft_check_path(t_game *game)
 {
-	int *pos;
+	int	*pos;
 	int	c;
-	int ex;
+	int	ex;
 
 	c = game->c;
 	ex = game->ex;
