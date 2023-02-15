@@ -1,5 +1,4 @@
-/* ************************************************************************** */
-
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_window.c                                        :+:      :+:    :+:   */
@@ -7,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:56:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/14 17:25:07 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:59:36 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +25,13 @@ int	ft_close_window(t_game *game)
 void	ft_put_floor(t_game *game)
 {
 	game->col_x = 0;
-	while(game->col_x < game->col)
+	game->file = mlx_xpm_file_to_image(game->mlx_init, "./sprites/suelo.xpm", &game->pxl, &game->pxl);
+	while (game->col_x < game->col)
 	{
 		game->row_y = 0;
 		while (game->row_y < game->row)
 		{
-			game->file = mlx_xpm_file_to_image(game->mlx_init, "./sprites/suelo.xpm", &game->pxl, &game->pxl);
-			mlx_put_image_to_window(game->mlx_init, game->mlx_win, game->file, (game->pxl) * game->col_x, (game->pxl) * game->row_y);
+			mlx_put_image_to_window(game->mlx_init, game->mlx_win, game->file, (game->pxl * game->col_x),  game->pxl * game->row_y);
 			game->row_y++;
 		}
 		game->col_x++;
