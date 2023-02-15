@@ -6,18 +6,18 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:45:13 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/13 20:09:20 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:48:27 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*char	*ft_free_sl(char **pt)
+char	*ft_free_sl(char **pt)
 {
 	free(*pt);
 	*pt = NULL;
 	return (NULL);
-}*/
+}
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {

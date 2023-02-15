@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:09:41 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/13 20:15:27 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:07:25 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-/*
-typedef struct s_player
-{
-
-} player;
-*/
+//KEYS
+# define ESC 53
+# define UP 13
+# define LEFT 0
+# define DOWN 1
+# define RIGHT 2
 
 typedef struct game_map
 {
@@ -39,6 +39,9 @@ typedef struct game_map
 	int		row_y;
 	int		col_x;
 	int		p;
+	int		p_x;
+	int		p_y;
+	int		moves;
 	int		c;
 	int		ex;
 	int		chr;
@@ -66,10 +69,14 @@ char	*ft_free_sl(char **pt);
 
 //WINDOW//
 void		ft_open_window(t_game *game);
+void		ft_put_all(t_game *game);
+void		ft_put_floor(t_game *game);
 void		ft_put_limits(t_game *game);
 void		ft_put_collect(t_game *game);
 void		ft_put_player(t_game *game);
 void		ft_put_exit(t_game *game);
 int			ft_close_window(t_game *game);
+int			ft_move(int mov, t_game *game);
+void		ft_win(t_game *game);
 
 #endif

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/13 20:16:22 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:22:36 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	*ft_init_var(t_game *game)
 	game->ex = 0;
 	game->chr = 0;
 	game->line = 0;
+	game->moves = 0;
 	game->last_line = malloc(sizeof(char) * (game->col));
 	if (!game->last_line)
 		return (NULL);
@@ -113,7 +114,7 @@ int	main(int ac, char **av)
 	ft_check_path(&game);
 	ft_copy_map(&game, av);
 	ft_open_window(&game);
-//	mlx_hook(game.mlx_win, 2, 1L << 0, ft_movements, &game);
+	mlx_hook(game.mlx_win, 2, 1L << 0, ft_move, &game);
 	mlx_hook(game.mlx_win, 17, 1L << 5, ft_close_window, &game);
 	mlx_loop(game.mlx_init);
 	return (0);

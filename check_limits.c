@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:14:06 by laugarci          #+#    #+#             */
-/*   Updated: 2023/01/25 16:40:35 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:42:23 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_check_letters(char *buf, t_game *game)
 		i++;
 	}
 	ft_check_limits(buf[i - 2]);
+	ft_free(&buf);
 }
 
 void	ft_check_limits(char limit)
@@ -54,4 +55,5 @@ void	ft_check_last_line(char *limit)
 		}
 		i++;
 	}
+	ft_free(&limit);
 }

@@ -6,7 +6,7 @@
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 17:45:23 by laugarci          #+#    #+#              #
-#    Updated: 2023/01/30 12:51:08 by laugarci         ###   ########.fr        #
+#    Updated: 2023/02/14 13:14:38 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC_FILES	= so_long.c \
 			  check_limits.c \
 			  check_path.c \
 			  ft_window.c \
+			  ft_movements.c \
+			  ft_put_images.c \
 			  ./get_next_line/get_next_line.c \
 			  ./get_next_line/get_next_line_utils.c \
 
