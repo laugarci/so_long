@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:09:41 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/15 16:40:13 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:19:52 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,20 @@ typedef struct game_map
 	int		ex;
 	int		chr;
 	int		pxl;
-	int		pos;
+//	int		pos;
 	void	*mlx_init;
 	void	*mlx_win;
 }	t_game;
 
 //CHECKS//
 void	ft_check_arg(int ac, char **av);
+void	ft_init_var(t_game *game);
 void	ft_open_map(char **av, struct game_map *game);
 void	ft_check_letters(char *buf, struct game_map *game);
 void	ft_check_limits(char limit);
 void	ft_check_map(char *buf, t_game *game);
 void	ft_check_last_line(char *limit);
-void	ft_copy_map(t_game *game, char **av);
+void	*ft_copy_map(t_game *game, char **av);
 void	ft_check_path(t_game *game);
 int		*ft_start(char **map);
 void	ft_find_path(t_game *game, int x, int y);

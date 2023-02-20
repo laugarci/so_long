@@ -6,25 +6,27 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/14 15:06:16 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:07:08 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "get_next_line/get_next_line.h"
 
-void	ft_copy_map(t_game *game, char **av)
+void	*ft_copy_map(t_game *game, char **av)
 {
 	int	fd;
 	int	count;
 	int	i;
 	int	k;
-
+	
 	i = 0;
 	k = 0;
 	count = game->row;
 	fd = open(av[1], O_RDONLY);
-	game->map = malloc(sizeof(char) * (game->col) * (game->row));
+	game->map = malloc(sizeof(char **) * (game->row));
+	if (!game->map)
+		return (NULL);
 	while (count > 0)
 	{
 		game->map[i] = get_next_line(fd);
@@ -32,6 +34,7 @@ void	ft_copy_map(t_game *game, char **av)
 		i++;
 	}
 	close(fd);
+	return (0);
 }
 
 int	*ft_start(char **map)
@@ -83,13 +86,23 @@ void	ft_check_path(t_game *game)
 	int	*pos;
 	int	c;
 	int	ex;
+	int i;
 
+	i = 0;
 	c = game->c;
 	ex = game->ex;
 	pos = ft_start(game->map);
 	ft_find_path(game, pos[0], pos[1]);
+	free(pos);
 	if (game->ex != 0 && game->c != 0)
 		write(1, "El mapa no se puede resolver\n", 29);
 	game->c = c;
 	game->ex = ex;
+
+	while (i < game->row)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
 }
