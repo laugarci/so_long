@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 11:56:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/17 11:53:34 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:24:01 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_close_window(t_game *game)
 void	ft_put_floor(t_game *game)
 {
 	game->col_x = 0;
-	game->file = mlx_xpm_file_to_image(game->mlx_init, "./sprites/suelo50.xpm", &game->pxl, &game->pxl);
+	game->file = mlx_xpm_file_to_image(game->mlx_init, "./sprites/suelo.xpm", &game->pxl, &game->pxl);
 	while (game->col_x < game->col)
 	{
 		game->row_y = 0;

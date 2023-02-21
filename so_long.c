@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:41:32 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/20 19:07:51 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:42:18 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_init_var(t_game *game)
 	game->chr = 0;
 	game->line = 0;
 	game->moves = 0;
+	game->direction = 0;
 	game->last_line = NULL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:10:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/20 18:37:31 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:06:51 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_move_up(t_game *game)
 		game->c--;
 	game->map[game->p_y - 1][game->p_x] = 'P';
 	game->moves++;
+	game->direction = 1;
 }
 
 void	ft_move_down(t_game *game)
@@ -29,6 +30,7 @@ void	ft_move_down(t_game *game)
 		game->c--;
 	game->map[game->p_y + 1][game->p_x] = 'P';
 	game->moves++;
+	game->direction = 0;
 }
 
 void	ft_move_left(t_game *game)
@@ -38,6 +40,7 @@ void	ft_move_left(t_game *game)
 		game->c--;
 	game->map[game->p_y][game->p_x - 1] = 'P';
 	game->moves++;
+	game->direction = 2;
 }
 
 void	ft_move_right(t_game *game)
@@ -47,6 +50,7 @@ void	ft_move_right(t_game *game)
 		game->c--;
 	game->map[game->p_y][game->p_x + 1] = 'P';
 	game->moves++;
+	game->direction = 3;
 }
 
 int	ft_move(int mov, t_game *game)
