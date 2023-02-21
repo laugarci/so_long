@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:45:13 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/20 16:43:29 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:17:10 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_free_sl(char **pt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (pt[i])

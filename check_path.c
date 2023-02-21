@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/20 19:07:08 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:18:41 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_copy_map(t_game *game, char **av)
 	int	count;
 	int	i;
 	int	k;
-	
+
 	i = 0;
 	k = 0;
 	count = game->row;
@@ -86,7 +86,7 @@ void	ft_check_path(t_game *game)
 	int	*pos;
 	int	c;
 	int	ex;
-	int i;
+	int	i;
 
 	i = 0;
 	c = game->c;
@@ -95,10 +95,12 @@ void	ft_check_path(t_game *game)
 	ft_find_path(game, pos[0], pos[1]);
 	free(pos);
 	if (game->ex != 0 && game->c != 0)
+	{
 		write(1, "El mapa no se puede resolver\n", 29);
+		exit(-1);
+	}
 	game->c = c;
 	game->ex = ex;
-
 	while (i < game->row)
 	{
 		free(game->map[i]);

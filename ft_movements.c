@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:10:17 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/21 12:06:51 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:31:23 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,14 @@ void	ft_move_right(t_game *game)
 
 int	ft_move(int mov, t_game *game)
 {
-	int i;
-
-	i = 0;
 	if (mov == ESC)
 		ft_close_window(game);
-	if (game->c == 0 && ((mov == RIGHT && game->map[game->p_y][game->p_x + 1] == 'E')
-			|| (mov == DOWN && game->map[game->p_y + 1][game->p_x] == 'E')
-			|| (mov == LEFT && game->map[game->p_y][game->p_x - 1] == 'E')
-			|| (mov == UP && game->map[game->p_y - 1][game->p_x] == 'E')))
-	{
-		write(1, "WIN!\n", 4);
-		while (i < game->row)
-		{
-			free(game->map[i]);
-			i++;
-		}
-		free(game->map);
-		ft_close_window(game);
-	}
+	if (game->c == 0 && ((mov == RIGHT
+				&& game->map[game->p_y][game->p_x + 1] == 'E')
+		|| (mov == DOWN && game->map[game->p_y + 1][game->p_x] == 'E')
+		|| (mov == LEFT && game->map[game->p_y][game->p_x - 1] == 'E')
+		|| (mov == UP && game->map[game->p_y - 1][game->p_x] == 'E')))
+		ft_finish(game);
 	if (mov == UP && game->map[game->p_y - 1][game->p_x] != '1'
 			&& game->map[game->p_y - 1][game->p_x] != 'E')
 		ft_move_up(game);
