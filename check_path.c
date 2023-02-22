@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/21 13:18:41 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:35:53 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,11 @@ void	ft_check_path(t_game *game)
 	pos = ft_start(game->map);
 	ft_find_path(game, pos[0], pos[1]);
 	free(pos);
-	if (game->ex != 0 && game->c != 0)
+	if (game->ex != 0 || game->c != 0)
 	{
+		write(1, "Error\n", 6);
 		write(1, "El mapa no se puede resolver\n", 29);
-		exit(-1);
+		exit(1);
 	}
 	game->c = c;
 	game->ex = ex;

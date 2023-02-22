@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:28:48 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/21 13:16:38 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:38:21 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_check_map(char *buf, t_game *game)
 		if (buf[i] != '0' && buf[i] != 'P' && buf[i] != 'C' && buf[i] != 'E'
 			&& buf[i] != '\n' && buf[i] != '1')
 		{
+			write(1, "Error\n", 6);
 			write(1, "Hay caracteres erroneos en el mapa\n", 35);
 			exit(-1);
 		}
@@ -49,7 +50,8 @@ void	ft_open_map(char **av, t_game *game)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
-		write(1, "Error de lectura: el archivo no es valido\n", 42);
+		write(1, "Error\n", 6);
+		write(1, "Error de lectura: el archivo no es valido o no existe\n", 54);
 		exit(-1);
 	}
 	while (fd)
@@ -85,6 +87,7 @@ void	ft_check_arg(int ac, char **av)
 {
 	if (ac != 2)
 	{
+		write(1, "Error\n", 6);
 		write(1, "Debe haber un archivo .ber\n", 27);
 		exit(-1);
 	}
@@ -92,6 +95,7 @@ void	ft_check_arg(int ac, char **av)
 	{
 		if (!ft_strnstr(av[1], ".ber", ft_strlen_sl(av[1])))
 		{
+			write(1, "Error\n", 6);
 			write(1, "El archivo debe ser .ber\n", 25);
 			exit (-1);
 		}
