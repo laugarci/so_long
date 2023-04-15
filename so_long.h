@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:09:41 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/21 14:18:21 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:28:49 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct game_map
 	int		direction;
 	void	*mlx_init;
 	void	*mlx_win;
+	int		test;
 }	t_game;
 
 //CHECKS//

@@ -6,12 +6,29 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:38:10 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/22 12:44:02 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:36:55 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "./mlx/mlx.h"
+
+void	ft_putnbr_moves(int moves)
+{
+	char	c;
+
+	if (moves < 10)
+	{
+		c = moves + 48;
+		write(1, &c, 1);
+	}
+	else
+	{
+		ft_putnbr_moves(moves / 10);
+		c = (moves % 10) + 48;
+		write(1, &c, 1);
+	}
+}
 
 int	ft_close_window(t_game *game)
 {
@@ -59,7 +76,9 @@ void	ft_put_all(t_game *game)
 		}
 		game->row_y++;
 	}
-	printf("Movements: %d\n", game->moves); //cambiar printf
+	write(1, "Movements: ", 11);
+	ft_putnbr_moves(game->moves);
+	write(1, "\n", 1);
 }
 
 void	ft_open_window(t_game *game)
