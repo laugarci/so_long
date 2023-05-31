@@ -5,58 +5,56 @@
 #                                                     +:+ +:+         +:+      #
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/14 17:45:23 by laugarci          #+#    #+#              #
-#    Updated: 2023/02/21 15:39:05 by laugarci         ###   ########.fr        #
+#    Created: 2023/05/31 17:19:02 by laugarci          #+#    #+#              #
+#    Updated: 2023/05/31 17:37:36 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= so_long.a
-HEADER	= so_long.h
+NAME = so_long
 
-CFLAGS	= -Wall -Wextra -Werror
+HEADER = so_long.h
 
-MLXCC	=  -L mlx -lmlx
-OPENGL	= -framework OpenGL -framework AppKit
+CC = gcc
 
-INC		= -I mlx -I get_next_line
+RM = rm -f
 
-CC		= gcc
+CFLAGS = -Wall -Wextra -Werror
 
-NORM	= norminette -R CheckForbiddenSourceHeader
+MLX_PATH = mlx/
 
-RM		= rm -f
+MLX_LIB = $(MLX_PATH)libmlx.a
 
-AR		= ar -rcs
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRC_FILES	= so_long.c \
-			  so_long_utils.c \
-			  check_limits.c \
-			  check_path.c \
-			  ft_window.c \
-			  ft_movements.c \
-			  ft_put_images.c \
-			  ft_finish.c \
-			  get_next_line/get_next_line.c \
-			  get_next_line/get_next_line_utils.c \
+CFILES = check_limits.c \
+		 check_path.c \
+		 ft_finish.c \
+		 ft_movements.c \
+		 ft_put_images.c \
+		 ft_window.c \
+		 so_long.c \
+		 so_long_utils.c \
+		 get_next_line/get_next_line.c \
+		 get_next_line/get_next_line_utils.c
 
-SRC_OBJ		= $(SRC_FILES:.c=.o)
+OBJECTS = $(CFILES:.c=.o)
+DEPS	= $(CFILES:.c=.d)
 
-SRC_DEPS	= $(SRC_FILES:.c=.d)
-
-$(MLX): @make -s -C mlx
-
-all: $(MLX) $(NAME) 
+all: subsystems $(NAME)
 
 %.o : %.c Makefile
-	@$(CC) $(CFLAGS) -MMD $(INC) -c $< -o $@
-	@echo "Compiling $<..."	
+	@$(CC) $(CFLAGS) -MMD -Imlx -c $< -o $@
+	@echo "Compiling $<..."
 
-$(NAME) : $(SRC_OBJ)
-	@$(CC) $(SRC_OBJ) $(MLXCC) $(INC) $(OPENGL) -o $(NAME)
-	@echo Compiled!
+subsystems:
+	make -C $(MLX_PATH) all
+
+$(NAME): $(OBJECTS)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(MLX_LIB) $(OBJECTS) -o $(NAME)
 
 clean:
-	@$(RM) $(SRC_OBJ) $(SRC_DEPS)
+	@$(RM) $(OBJECTS) $(DEPS)
+	@make -C $(MLX_PATH) clean
 
 fclean: clean
 	@$(RM) $(NAME)
@@ -64,8 +62,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	$(NORM)
-
--include $(SRC_DEPS)
+	norminette check_limits.c check_path.c ft_movements.c ft_put_images.c ft_window.c get_next_line so_long.c so_long_utils.c so_long.h
 
 .PHONY: all clean fclean re norm
