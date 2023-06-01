@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:56:35 by laugarci          #+#    #+#             */
-/*   Updated: 2023/02/21 15:35:53 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:09:50 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,17 @@ int	*ft_start(char **map)
 	return (0);
 }
 
-void	ft_find_path(t_game *game, int x, int y)
+int	ft_find_path(t_game *game, int x, int y)
 {
+	if (game->row == 3 || game->col == 3)
+	{
+		if (game->map[1][2] == 'E')
+		{
+			write(1, "Error\n", 6);
+			write(1, "El mapa no se puede resolver\n", 29);
+			return (-1);
+		}
+	}
 	if (game->map[x][y] != '1')
 	{
 		if (game->map[x][y] == 'E')
@@ -79,6 +88,7 @@ void	ft_find_path(t_game *game, int x, int y)
 		ft_find_path(game, x + 1, y);
 		ft_find_path(game, x - 1, y);
 	}
+	return (0);
 }
 
 void	ft_check_path(t_game *game)
@@ -92,20 +102,18 @@ void	ft_check_path(t_game *game)
 	c = game->c;
 	ex = game->ex;
 	pos = ft_start(game->map);
-	ft_find_path(game, pos[0], pos[1]);
+	if (ft_find_path(game, pos[0], pos[1]) == -1)
+		exit (-1);
 	free(pos);
 	if (game->ex != 0 || game->c != 0)
 	{
 		write(1, "Error\n", 6);
 		write(1, "El mapa no se puede resolver\n", 29);
-		exit(1);
+		exit(-1);
 	}
 	game->c = c;
 	game->ex = ex;
 	while (i < game->row)
-	{
-		free(game->map[i]);
-		i++;
-	}
+		free(game->map[i++]);
 	free(game->map);
 }

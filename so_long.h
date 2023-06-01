@@ -6,7 +6,7 @@
 /*   By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:09:41 by laugarci          #+#    #+#             */
-/*   Updated: 2023/04/15 11:28:49 by laugarci         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:08:38 by laugarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 //KEYS
 # define ESC 53
@@ -65,7 +66,7 @@ void	ft_check_elements(t_game *game);
 void	*ft_copy_map(t_game *game, char **av);
 void	ft_check_path(t_game *game);
 int		*ft_start(char **map);
-void	ft_find_path(t_game *game, int x, int y);
+int		ft_find_path(t_game *game, int x, int y);
 
 //UTILS//
 char	*ft_strnstr(const char *big, const char *little, size_t len);
