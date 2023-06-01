@@ -6,7 +6,7 @@
 #    By: laugarci <laugarci@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/31 17:19:02 by laugarci          #+#    #+#              #
-#    Updated: 2023/05/31 18:21:57 by laugarci         ###   ########.fr        #
+#    Updated: 2023/06/01 17:26:30 by laugarci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,18 +50,20 @@ subsystems:
 	make -C $(MLX_PATH) all
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(MLX_LIB) $(OBJECTS) -o $(NAME)
+	@$(CC) -o $(NAME) $(MLX_FLAGS) $(MLX_LIB) $(OBJECTS)
 
 clean:
 	@$(RM) $(OBJECTS) $(DEPS)
 	@make -C $(MLX_PATH) clean
 
-fclean: clean
+fclean: clean 
 	@$(RM) $(NAME)
 
 re: fclean all
 
 norm:
 	norminette check_limits.c check_path.c ft_movements.c ft_put_images.c ft_window.c get_next_line so_long.c so_long_utils.c so_long.h
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re norm
